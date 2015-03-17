@@ -6,9 +6,8 @@
 
 @import 'controller.less';
 
-
 .page {
-  max-width: 960px;
+  width: 960px;
   margin: auto;
 }
 
@@ -18,12 +17,16 @@
 
 body {
   background: url(../images/bg.png) repeat 0 0;
+  font-size: @bodyfontsize;
+  color: @bodyc;
+  line-height: 1.5;
 }
 
 body.body-font-sans-serif {
   font-family: @sanfont;
-  font-size: 100.01%/1.5;
-  font-weight: 400;
+  font-size: @bodyfontsize;
+/*  font-weight: 400;*/
+  line-height: 1.5;
 }
 
 body.body-font-sans-serif p,
@@ -33,12 +36,13 @@ body.body-font-sans-serif li {
 
 body.body-font-serif {
   font-family: @seriffont;
-  font-size: 102%;
+  font-size: @bodyfontsize;
+  line-height: 1.5;
 }
 
 body.body-font-serif p,
 body.body-font-serif li {
-  font-size: .86em;
+  font-size: 100%;
   line-height: 1.5em;
 }
 
@@ -49,6 +53,10 @@ a {
 a:hover {
   color: @linkc;
   text-decoration: none;
+}
+
+td, p, a {
+  font-size: 100%;
 }
 
 /* Typography */
@@ -70,6 +78,24 @@ a:hover {
   font-family: @seriffont;
 }
 
+h4 {
+  font-size: 1em;
+}
+
+/*Tables*/
+tbody {
+border: none;
+}
+
+tr, td, th {
+background: none;
+border: none;
+}
+
+tr:nth-child(2n+1) td {
+background: none;
+}
+
 /* Main nav */
 
 #menu-wrapper {
@@ -77,10 +103,20 @@ a:hover {
 }
 
 /* nav link */
+
+.body-font-serif #main-menu ul.menu.ul-depth-0 ul {
+  top: 38px;
+}
+
+.body-font-serif #main-menu ul.menu.ul-depth-0 ul li a {
+  font-size: 90%;
+}
+
 #main-menu ul.menu.ul-depth-0 a {
   font-family: @sanfont;
   color: @menugreen;
-  font-size: .83em;
+  font-size: 90%;
+  text-transform: uppercase;
 }
 
 #main-menu ul.ul-depth-0 > li.first a {
@@ -102,7 +138,7 @@ span.drop-arrow {
 }
 
 #main-menu ul.menu.ul-depth-0 ul li a {
-  font-size: .8em;
+  font-size: 90%;
   color: @paleblue;
   background-color: @menuback;
 }
@@ -156,16 +192,17 @@ margin-top: 0;
 background-color: @offwhite;
 }
 
-/*#content-top-custom input[type="text"] {
+#content-top-custom input[type="text"] {
 font: 123.1%/1em futura-pt,Helvetica,Arial,sans-serif;
 padding: 4px 6px;
 border: 1px solid #ccc;
 color: #051d1b;
 background: #f1f1f1;
-}*/
+}
 
 #breadcrumbs {
-padding-left: 0;
+padding: 24px 0 0 0;
+font-size: 108%
 }
 
 /*Top-links, very top*/
@@ -173,9 +210,8 @@ padding-left: 0;
 #top-links {
 width: 100%;
 text-transform: uppercase;
-font-family: @sanfont;
+font: 11px/32px futura-pt,Helvetica,Arial,sans-serif;
 letter-spacing: .15em;
-font-size: 12px;
 padding-top: 10px;
 margin-top: 0;
 background:rgba(19,32,30,0.6);
@@ -205,6 +241,11 @@ width: 300px;
 
 #content-wrapper {
 background: none;
+font-size: 100%;
+}
+
+#content-wrapper ul li {
+font-size: 100%;
 }
 
 div.title-wrapper, header.article-header {
@@ -216,13 +257,6 @@ text-transform: uppercase;
 margin-bottom: .5em;
 color: @headingc;
 font-weight: 700;
-}
-
-#content h4 {
-font-family: @seriffont;
-font-size: 1em;
-font-weight: 700;
-color: @headingc;
 }
 
 /*Sidebar*/
@@ -259,9 +293,13 @@ footer#colophon .footer-area a {
 color: @linkc;
 }
 
+footer p {
+margin-top: 10px;
+}
+
 footer a#facebook {
 background: url(../images/ico-social-facebook.png) no-repeat;
-padding: 20px;
+padding: 20px 15px;
 }
 
 footer a#twitter {
@@ -289,10 +327,84 @@ border: 0;
 
 /*Extra Homepage styles*/
 
-h3.hp {
-font-size: .9em;
+/*h3.hp {
+font-size: 108%;
 color: @headingc;
 text-transform: uppercase;
+font-weight: 600;
+}*/
+
+/*Front-page*/
+.front .article-header {
+    display: none;
+}
+
+.front h3 {
+    float: left;
+    width: 140px;	
+    font: 700 108%/1.5em futura-pt,Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
+    margin-top: 0;
+}
+
+    .strip {
+        border-bottom: 1px solid #e2e2e2;
+        border-top: 1px solid #fff;
+    }
+
+	.front .sec {
+		width: 31%;
+		float: left;
+		padding: 0 10px;
+		border-right: 1px solid #e2e2e2;
+		/*border-left: 1px solid #fff;*/
+		-webkit-box-shadow:1px 0px 0px #fff;
+		-moz-box-shadow:1px 0px 0px #fff;
+		box-shadow:1px 0px 0px #fff;
+	}
+		.front .sec-first {padding-left: 0;}
+		.front .sec-last {
+			padding-right: 0; 
+			border-right: none;
+			-webkit-box-shadow:none;
+			-moz-box-shadow:none;
+			box-shadow:none;}
+		
+	.sec h4 {
+		font: 700 108%/1.5em futura-pt, Helvetica, Arial, sans-serif;
+		color: #051d1b;
+		text-transform: uppercase;
+		margin-bottom: .5em;
+		/* text-shadow: 0px 1px 1px #fff; */
+	}
+	
+	#main {padding-top: 38px;}
+	
+	#search {padding-top: 24px;}
+	
+		.not-front #main {padding-top: 16px;}
+
+/*author/species pubs from drupal 6 */
+
+/* ------------------- @author/species pubs ------------------- */
+#author-pubs {
+    height: 133px;
+}
+
+#author-pubs .page {
+    position: relative;
+    height: 150px;
+
+}
+
+#author-pubs h3 {
+    padding-top: 17px;
+}
+
+#author-pubs .hp-section {
+    padding: 6px 0 46px 0;
+    overflow: visible;
+    margin-left: 160px;
 }
 
 /*Quicktabs style from drupal 6, mostly unchanged */
@@ -336,9 +448,11 @@ text-transform: uppercase;
 	
 	#quicktabs-tabbed_search .quicktabs-tabs a {
 	font-family: futura-pt, Helvetica, Arial, sans-serif;
+        font-size: 14px;
 	text-transform: uppercase;
 	text-decoration: none;
 	font-weight: bold;
+        line-height: 1em;
 	display: block;
 	color: #00948e;
 	padding: 0 .75em;
@@ -392,6 +506,7 @@ text-transform: uppercase;
 		/* text-shadow: 0px 1px -1px #ccc; */
 		margin: 0 0 0 6px;
 		vertical-align: middle;
+                font-size: 108%;
 	}
 
 		label {
@@ -399,6 +514,7 @@ text-transform: uppercase;
 		font-weight: normal !important;
 		color: #051d1b;
                 display: inline;
+                font-size: 123%;
 	}
 	
 		#edit-custom-search-blocks-form-1-1-wrapper label {
@@ -463,6 +579,7 @@ text-transform: uppercase;
 	margin-top: 1em; padding-top: .5em;
 	clear: both;
 	border-top: 1px dotted #ccc;
+        font: 123.1%/1.5em futura-pt,Helvetica,Arial,sans-serif;
 	}
 	
 	#content-top-custom .adv-link a {

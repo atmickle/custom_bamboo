@@ -121,6 +121,21 @@ $vars['rdf'] = new stdClass;
       'weight' => '9999',
       )
     );
+  drupal_add_js(drupal_get_path('theme', 'bamboo') . '/js/localscript.js',
+    array(
+      'group' => JS_THEME,
+      'preprocess' => TRUE,
+      'weight' => '9999',
+      )
+    );
+  drupal_add_js(drupal_get_path('theme', 'bamboo') . '/js/jcarousellite_1.0.1.min.js',
+    array(
+      'group' => JS_THEME,
+      'preprocess' => TRUE,
+      'weight' => '9999',
+      )
+    );
+
   $vars['scripts'] = drupal_get_js();
 
   // Use tertiary menus = true.
@@ -211,10 +226,18 @@ function bamboo_breadcrumb($vars) {
 
   // Show breadcrumbs if checked.
   if (theme_get_setting('breadcrumbs') == 1) {
-
     // Theme the breadcrumbs.
     $breadcrumb = $vars['breadcrumb'];
     if (!empty($breadcrumb)) {
+    // Remove 'home' breadcrumb (first array element) if it is present
+    if (!empty($breadcrumb)) {
+        array_shift($breadcrumb);
+//        array_shift($breadcrumb);
+    }
+    // Prepend MBLWHOI Library, DLA, and site name to breadcrumbs.
+    array_unshift($breadcrumb,
+                  l('MBLWHOI Library', base_path(), array('external' => TRUE))
+                 );
       // Use CSS to hide titile .element-invisible.
       $output = '<h2 class="element-invisible">' . t('You are here') . '</h2>';
       // Comment below line to hide current page to breadcrumb.
@@ -365,6 +388,14 @@ function bamboo_page_alter($page) {
     );
     drupal_add_html_head($viewport, 'viewport');
 
+  }
+
+}
+
+function bamboo_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'search_block_form') {
+    $form['search_block_form']['#title'] = t('Search this Site:'); // Change the text on the label element
+    $form['search_block_form']['#title_display'] = 'before'; // Toggle label visibilty
   }
 
 }

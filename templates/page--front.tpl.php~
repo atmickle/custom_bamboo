@@ -135,11 +135,11 @@
     </div>
   <?php endif; ?>
 
-  <?php if ($breadcrumb): ?>
+  <//?php if ($breadcrumb): ?>
     <div id="breadcrumbs">
       <?php print $breadcrumb; ?>
     </div>
-  <?php endif; ?>
+  <//?php endif; ?>
 
     <?php if ($page['hero_second']): ?>
     <!--below breadcrumbs-->
@@ -201,16 +201,47 @@
 </div>
 
 <div class="container" id="content-wrapper">
-  <div class="page">
-
-
+  <div class="strip" id="pubregion">
+    <div class="page">
+      <div id="author-pubs" class="strip">
+        <div class="page">
+          <h3>This week's Woods Hole Publications</h3>
+            <div id="pub-box" class="hp-section">
+              <?php $view = views_get_view('author_works');
+                   print $view->execute_display('default');
+                //$view2 = views_get_view('species_pubs');
+                //print $view2->execute_display('default');
+              ?>
+                <!-- <div id="pub-tabs">
+                <a id="auth-tab" class="active-pubs">This week's publications by Woods Hole authors</a>
+                <a id="spec-tab" href="javascript:;">About WH Species</a>
+                </div> -->
+              <div id="pub-shad"></div>
+            </div>
+         </div>
+      </div>
+    </div>
+  </div>
+  <div id="announcements" class="strip">
+    <div class="page">
+      <h3>Library News and Projects</h3>
+	<div id="announcements-box" class="hp-section">
+          <?php $view = views_get_view('announcements');
+		print $view->execute_display('default'); ?>
+	</div>
+    </div>
+  </div> 
+<!-- end announcements -->
+  <div id="main" class="strip">
+    <div class="page">
+    <h3>Explore</h3>
   <?php if ($page['sidebar_first']): ?>
     <?php $contentwid = "eleven"; ?>
   <?php else: ?>
     <?php $contentwid = "sixteen"; ?>
   <?php endif; ?>
 
-  <div id="content" class="<?php print $contentwid; ?> columns">
+  <div id="content" class="<?php print $contentwid; ?> columns hp-section">
     <?php if (!empty($tabs['#primary'])): ?>
       <div class="tabs-wrapper"><?php print render($tabs); ?></div>
     <?php endif; ?>
@@ -221,12 +252,12 @@
         <div id="content_top"><?php print render($page['content_top']); ?></div>
       <?php endif; ?>
 
-<!--##      <?php if (!$is_node): ?>-->
+      <?php if (!$is_node): ?>
       <?php print render($title_prefix); ?>
       <?php if ($title): ?><h1 class="page-title"><?php print $title; ?></h1>
       <?php endif; ?>
       <?php print render($title_suffix); ?>
-<!--##      <?php endif; ?>-->
+      <?php endif; ?>
 
       <?php print render($page['help']); ?>
       <?php if ($action_links): ?>
@@ -244,7 +275,7 @@
     <?php print render($page['sidebar_first']); ?>
     </aside><!-- /#sidebar-first -->
 <?php endif; ?>
-
+  </div>
 </div>
 
 <footer id="colophon" class="container">
